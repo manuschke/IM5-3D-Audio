@@ -1,0 +1,265 @@
+:root {
+  --french-white: #eeede4;
+  --jolly-black: #191917;
+  --cabasa-yellow: #e9c824;
+  --maracaibu-blue: #2f4858;
+}
+
+body {
+  font-family: "Proxima Nova", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--french-white);
+  color: var(--jolly-black);
+}
+
+/* Erster Bildschirm */
+
+.mainscreen {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  background-image: url("../img/background-image.jpg");
+  background-size: cover;
+  background-position: center;
+  padding-left: 140px;
+  position: relative;
+}
+
+.mainscreen::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, #191917) 80%;
+  z-index: 1;
+}
+
+h1 {
+  margin: 0;
+  color: var(--french-white);
+  font-weight: 700;
+  font-style: normal;
+  font-size: 150px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Secondscreen */
+
+.secondscreen {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  justify-items: start;
+  align-items: center;
+  grid-gap: 20px;
+  padding: 0 140px;
+  background-color: var(--maracaibu-blue);
+  opacity: 0;
+  animation: fadeInFromLeft 1.5s ease forwards;
+  animation-delay: 2s;
+  height: 80vh;
+}
+
+/* Keyframe-Animation für das Einfliegen von links und Änderung der Transparenz */
+@keyframes fadeInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.first-paragraph {
+  grid-column: 1 / 5;
+  grid-row: 2;
+  color: var(--cabasa-yellow);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.info-box {
+  color: var(--maracaibu-blue);
+  background-color: var(--french-white);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 7px 5px 35px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.box-title {
+  margin: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.box-content {
+  display: none;
+  padding: 10px;
+}
+
+#advantages-box {
+  grid-column: 6 / 9;
+  grid-row: 2;
+}
+
+#disadvantages-box {
+  grid-column: 10 / 13;
+  grid-row: 2;
+}
+
+/* DritterScreen */
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.Anwendungsbereich,
+.Klang {
+  transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+h1,
+h2 {
+  grid-column: span 12;
+}
+
+.Anwendungsbereich h2,
+.Klang h2 {
+  text-align: center;
+  font-size: 64px;
+  color: var(--maracaibu-blue);
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+p,
+ul {
+  grid-column: span 6;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.card {
+  width: 45%;
+  height: auto;
+  min-height: 300px;
+  perspective: 1000px;
+  border-radius: 10px;
+  box-shadow: 7px 5px 35px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.card-front,
+.card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.6s;
+  padding: 20px;
+  border-radius: 10px;
+  word-wrap: break-word;
+  overflow: auto;
+}
+
+.card-front {
+  background: var(--maracaibu-blue);
+  color: var(--french-white);
+}
+
+.card-back {
+  background: var(--french-white);
+  font-size: 0.9em;
+  color: var(--maracaibu-blue);
+  transform: rotateY(180deg);
+  overflow: auto;
+}
+
+.card:hover .card-front {
+  transform: rotateY(-180deg);
+}
+
+.card:hover .card-back {
+  transform: rotateY(0deg);
+}
+
+/* Stil für die Produktabschnitte */
+.product-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  margin: 40px 140px;
+  color: var(--jolly-black);
+}
+
+/* Stil für einzelne Produktboxen */
+.product-box {
+  background-color: var(--french-white);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Überschriften im Produktabschnitt */
+.product-section h2 {
+  grid-column: span 2;
+  font-size: 64px;
+  text-align: center;
+  color: var(--maracaibu-blue);
+  margin-bottom: 20px;
+}
+
+.product-box h3 {
+  margin: 0 0 10px 0;
+  color: var(--cabasa-yellow);
+  font-size: 1.5em;
+}
+
+.product-box p {
+  margin: 0;
+}
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  font-weight: 700;
+  background-color: var(--cabasa-yellow);
+  color: var(--maracaibu-blue);
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+#myBtn:hover {
+  background-color: var(--french-white);
+}
